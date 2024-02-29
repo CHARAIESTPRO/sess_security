@@ -10,7 +10,6 @@
 
 void starter() {
     char pass[6];
-    printf("Enter password: ");
     fflush(stdout);
     
     // Set up a file descriptor set for stdin
@@ -26,28 +25,32 @@ void starter() {
     int ret = select(STDIN_FILENO + 1, &fds, NULL, NULL, &timeout);
     if (ret == -1) {
         perror("select");
-        exit(EXIT_FAILURE);
+	system("ft_lock");
+        exit(42);
     } else if (ret == 0) {
         // Timeout occurred
-        printf("Timeout occurred\n");
-        exit(EXIT_FAILURE);
+	system("ft_lock");
+        exit(42);
     } else {
         if (fgets(pass, sizeof(pass), stdin) == NULL) {
-            exit(EXIT_FAILURE);
+	system("ft_lock");
+            exit(42);
         } else {
             pass[strcspn(pass, "\n")] = 0; // Remove trailing newline
             if (strcmp(pass, "60065") == 0) {
+		system("clear");
                 printf("%sWelcome back king%s\n", GREEN, RESET);
-                exit(EXIT_SUCCESS);
+                exit(13);
             } else {
-                exit(EXIT_FAILURE);
+	system("ft_lock");
+                exit(42);
             }
         }
     }
 }
 
 void no_ctrlc() {
-    exit(EXIT_FAILURE);
+    exit(42);
 }
 
 int main() {
@@ -56,5 +59,5 @@ int main() {
     while (1) {
         starter();
     }
-    return EXIT_FAILURE;
+    return 42;
 }
