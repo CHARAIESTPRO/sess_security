@@ -1,7 +1,7 @@
 x=1
 read H
 head -n 49 .zsh_history >> tmp;
-rm .zsh_histry
+rm .zsh_history
 mv tmp .zsh_history
 rm test
 while [ $x -le $H ]
@@ -13,3 +13,4 @@ do
         sleep 1800;
         x=$(( $x + 1 ));
 done
+
