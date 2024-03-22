@@ -1,0 +1,15 @@
+x=1
+read H
+head -n 49 .zsh_history >> tmp;
+rm .zsh_histry
+mv tmp .zsh_history
+rm test
+while [ $x -le $H ]
+do
+        ft_lock;
+        sleep 1800;
+        killall -KILL ft_lock;
+        ft_lock;
+        sleep 1800;
+        x=$(( $x + 1 ));
+done
