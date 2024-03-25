@@ -4,7 +4,7 @@ read H
 head -n 49 .zsh_history >> tmp;
 rm .zsh_history
 mv tmp .zsh_history
-rm secure
+rm test
 
 echo "1 - Infinite lockscreen"
 echo "2 - Delogs you after few hours"
