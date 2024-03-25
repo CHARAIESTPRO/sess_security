@@ -1,9 +1,15 @@
 x=1
+echo "Enter hours:"
 read H
 head -n 49 .zsh_history >> tmp;
 rm .zsh_history
 mv tmp .zsh_history
-rm test
+rm secure
+
+echo "1 - Infinite lockscreen"
+echo "2 - Delogs you after few hours"
+
+infinilock(){
 while [ $x -le $H ]
 do
         ft_lock;
@@ -13,4 +19,26 @@ do
         sleep 1800;
         x=$(( $x + 1 ));
 done
+}
 
+delogtimer(){
+while [ $x -le $H ]
+do
+        sleep 1800;
+        sleep 1800;
+        x=$(( $x + 1 ));
+done
+gnome-session-quit --no-prompt
+
+}
+
+starter(){
+read -n1 -p "Please enter 1 or 2: " doit 
+case $doit in  
+  1) infinilock ;; 
+  2) delogtimer ;; 
+  *) starter ;; 
+esac
+}
+
+starter
